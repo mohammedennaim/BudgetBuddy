@@ -9,11 +9,6 @@ class Expense extends Model
 {
     use HasFactory;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'amount',
         'description',
@@ -21,11 +16,6 @@ class Expense extends Model
         'user_id',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
     protected $casts = [
         'amount' => 'decimal:2',
         'date' => 'date',
