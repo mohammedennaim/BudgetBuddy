@@ -46,4 +46,20 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * Get the expenses for the user.
+     */
+    public function expenses()
+    {
+        return $this->hasMany(Expense::class);
+    }
+
+    /**
+     * Get the depensesGroupe for the user.
+     */
+    public function depensesGroupe()    
+    {
+        return $this->hasMany(DepensesGroupe::class);
+    }
 }

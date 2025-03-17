@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\depensesGroupeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,4 +31,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/expenses/{id}', [ExpenseController::class, 'show']);
     Route::put('/expenses/{id}', [ExpenseController::class, 'update']);
     Route::delete('/expenses/{id}', [ExpenseController::class, 'destroy']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/groups', [depensesGroupeController::class, 'store']);
+    Route::get('/groups', [depensesGroupeController::class, 'index']);
+    Route::get('/groups/{id}', [depensesGroupeController::class, 'show']);
+    Route::delete('/groups/{id}', [depensesGroupeController::class, 'destroy']);
 });
