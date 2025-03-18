@@ -18,7 +18,6 @@ class depensesGroupeResource extends JsonResource
         return [
             // 'id' => $this->id,
             'name' => $this->name,
-            'membres' => $this->user,
             'devise'=> $this->devise,
             // 'created_at' => $this->created_at,
             // 'updated_at' => $this->updated_at,

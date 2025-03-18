@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('depenses_groupe', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('members_id')->constrained();
             $table->foreignId('devise_id')->constrained();
             $table->timestamps();
         });

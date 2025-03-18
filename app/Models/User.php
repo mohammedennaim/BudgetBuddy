@@ -55,11 +55,8 @@ class User extends Authenticatable
         return $this->hasMany(Expense::class);
     }
 
-    /**
-     * Get the depensesGroupe for the user.
-     */
-    public function depensesGroupe()    
+    public function groups()
     {
-        return $this->hasMany(DepensesGroupe::class);
+        return $this->belongsToMany(DepensesGroupe::class, 'members');
     }
 }
