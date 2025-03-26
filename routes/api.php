@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\depensesGroupeController;
+use App\Http\Controllers\GroupeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,8 +34,12 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/groups', [depensesGroupeController::class, 'store']);
-    Route::get('/groups', [depensesGroupeController::class, 'index']);
-    Route::get('/groups/{id}', [depensesGroupeController::class, 'show']);
-    Route::delete('/groups/{id}', [depensesGroupeController::class, 'destroy']);
+    Route::post('/groups', [GroupeController::class, 'store']);
+    Route::get('/groups', [GroupeController::class, 'index']);
+    Route::get('/groups/{id}', [GroupeController::class, 'show']);
+    Route::delete('/groups/{id}', [GroupeController::class, 'destroy']);
+
+    Route::post('/groups/{id}/expenses', [GroupeController::class, 'addExpense']);
+    Route::get('/groups/{id}/expenses', [GroupeController::class, 'getExpenses']);
+    Route::delete('/groups/{id}/expenses/{expenseId}', [GroupeController::class, 'detachExpense']);
 });

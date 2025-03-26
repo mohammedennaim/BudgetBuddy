@@ -22,12 +22,10 @@ class TagController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'color' => 'nullable|string|max:7',
         ]);
 
         $tag = Tag::create([
             'name' => $request->name,
-            'color' => $request->color ?? '#000000',
             'user_id' => Auth::id(),
         ]);
 

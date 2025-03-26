@@ -9,21 +9,20 @@ class Tag extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'color', 'user_id'];
+    protected $fillable = ['name', 'user_id'];
 
-    /**
-     * Get the user that owns the tag.
-     */
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    /**
-     * Get the expenses for the tag.
-     */
     public function expenses()
     {
         return $this->belongsToMany(Expense::class, 'expense_tag');
+    }
+
+    public function groupes()
+    {
+        return $this->belongsToMany(Groupe::class, 'groupes');
     }
 }

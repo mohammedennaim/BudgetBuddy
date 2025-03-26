@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('expense_user', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->foreignId('expense_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->decimal('amount', 10, 2);
+            $table->decimal('amountPaid', 10, 2);
+            $table->decimal('amountRemaining', 10, 2);
+            $table->enum('type', ['equal', 'kitsal', 'khas ikhales'])->default('equal');
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('expense_user');
     }
 };

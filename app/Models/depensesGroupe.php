@@ -8,20 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class DepensesGroupe extends Model
 {
     use HasFactory;
-    protected $table = 'depenses_groupe';
-
+    protected $table = 'expense_groupe';
     protected $fillable = [
-        'name',
-        'devise_id',
+        'groupe_id',
+        'expense_id',
     ];
 
-    public function members()
+    public function expenses()
     {
-        return $this->belongsToMany(User::class, 'members');
+        return $this->belongsToMany(Expense::class, 'expenses');
     }
 
-    public function devise()
+    public function groupes()
     {
-        return $this->belongsTo(Devise::class);
+        return $this->belongsToMany(Groupe::class, 'groupes');
     }
 }

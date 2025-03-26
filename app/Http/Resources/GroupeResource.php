@@ -6,7 +6,7 @@ use App\Models\Devise;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class depensesGroupeResource extends JsonResource
+class GroupeResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,6 +18,7 @@ class depensesGroupeResource extends JsonResource
         return [
             // 'id' => $this->id,
             'name' => $this->name,
+            'members' => $this->members,
             'devise'=> $this->devise,
             // 'created_at' => $this->created_at,
             // 'updated_at' => $this->updated_at,

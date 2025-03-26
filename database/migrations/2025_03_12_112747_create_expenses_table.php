@@ -13,10 +13,12 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->decimal('amount', 10, 2);
-            $table->string('description')->nullable();
-            $table->date('date');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->string('description');
+            $table->date('date');
+            $table->decimal('amountTotal', 10, 2);
+            $table->enum('type', ['equal', 'kitsal', 'khas ikhales'])->default('equal');
+            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }

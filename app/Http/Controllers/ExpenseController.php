@@ -91,14 +91,14 @@ class ExpenseController extends Controller
         }
 
         $request->validate([
-            'amount' => 'sometimes|required|numeric|min:0',
+            'amountTotal' => 'sometimes|required|numeric|min:0',
             'description' => 'sometimes|required|string|max:255',
             'date' => 'sometimes|required|date',
             'tags' => 'sometimes|nullable|array',
             'tags.*' => 'exists:tags,id'
         ]);
 
-        if ($request->has('amount')) {
+        if ($request->has('amountTotal')) {
             $expense->amount = $request->amount;
         }
 
