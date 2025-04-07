@@ -6,7 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class ExpenseSplit extends Model
 {
-    protected $fillable = ['amount', 'expense_id', 'user_id'];
+    protected $fillable = [
+        'expense_id',
+        'user_id',
+        'amountPaid',
+        'amountRemaining',
+        'type'
+    ];
 
     public function expense()
     {

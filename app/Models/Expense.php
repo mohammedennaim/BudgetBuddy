@@ -9,9 +9,7 @@ class Expense extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['amount'];
-
-    protected $casts = ['amount' => 'decimal:2'];
+    protected $fillable = ['amountTotal', 'description', 'date', 'type'];
 
     public function user()
     {
@@ -27,11 +25,6 @@ class Expense extends Model
     public function groupes()
     {
         return $this->belongsToMany(Groupe::class, 'groupes');
-    }
-
-    public function payments()
-    {
-        return $this->hasMany(ExpensePayment::class);
     }
 
     public function splits()

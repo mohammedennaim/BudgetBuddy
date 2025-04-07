@@ -17,10 +17,11 @@ class ExpenseResource extends JsonResource
         return [
             'id' => $this->id,
             'amount' => $this->amount,
-            // 'tags' => $this->tags->pluck('id'),
-            // 'tags'=> TagResource::collection($this->tags),
+            'description' => $this->description,
+            'date' => $this->date,
+            'tags' => $this->tags->pluck('name'),
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'updated_at' => $this->updated_at
         ];
     }
 }

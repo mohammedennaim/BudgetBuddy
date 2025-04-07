@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\GroupeResource;
 use App\Models\Expense;
-use App\Models\ExpensePayment;
 use App\Models\ExpenseSplit;
 use App\Models\Groupe;
 use Illuminate\Http\Request;
@@ -162,7 +161,7 @@ class GroupeController extends Controller
         foreach ($request->payers as $payer) {
             $expense->payments()->create([
                 'user_id' => $payer['user_id'],
-                'amount' => $payer['amount'],
+                'amountPaid' => $payer['amountPaid'],
             ]);
         }
 
@@ -171,7 +170,7 @@ class GroupeController extends Controller
             foreach ($request->participants as $participant) {
                 $expense->splits()->create([
                     'user_id' => $participant['user_id'],
-                    'amount' => $participant['share'],
+                    'amountRemaining' => 0,
                     'type' => 'equal',
                 ]);
             }
@@ -180,7 +179,7 @@ class GroupeController extends Controller
                 if ($participant['share'] > $splitAmount) {
                     $expense->splits()->create([
                         'user_id' => $participant['user_id'],
-                        'amount' => $splitAmount - $participant['share'],
+                        'amountRemaining' =>  - $participant['share'],
                         'type' => 'kitsal',
                     ]);
                 }else{
@@ -302,7 +301,6 @@ class GroupeController extends Controller
             return response()->json(['message' => 'This expense does not belong to the specified group'], 400);
         }
 
-        $paymentsDeleted = ExpensePayment::where('expense_id', $expenseId)->delete();
         $splitsDeleted = ExpenseSplit::where('expense_id', $expenseId)->delete();
         $groupe->expenses()->detach($expenseId);
         $expense->delete();
@@ -310,7 +308,6 @@ class GroupeController extends Controller
         return response()->json([
             'message' => 'Expense removed successfully',
             'details' => [
-                'payments_deleted' => $paymentsDeleted,
                 'splits_deleted' => $splitsDeleted
             ]
         ], 200);

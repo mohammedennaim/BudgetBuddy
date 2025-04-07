@@ -18,7 +18,6 @@ return new class extends Migration
             $table->date('date');
             $table->decimal('amountTotal', 10, 2);
             $table->enum('type', ['equal', 'kitsal', 'khas ikhales'])->default('equal');
-            $table->decimal('amount', 10, 2);
             $table->timestamps();
         });
     }
